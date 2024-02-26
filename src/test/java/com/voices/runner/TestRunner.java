@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "com/voices/stepDefinition",
         },
         //tags = "@abc or @xyz",
-        tags = "@HomePageLink",
+        tags = "@Search",
         plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         monochrome = true,
         publish = true
