@@ -1,7 +1,7 @@
 package com.voices.managers;
 
 import com.voices.baseClass.BaseClass;
-import com.voices.pageObjects.HomePageObj.HomePage;
+import com.voices.pageObjects.HyperLinkPageObj.HyperLinkPage;
 import com.voices.pageObjects.LoginPageObj.LoginPage;
 import com.voices.pageObjects.SearchPageObj.SearchPage;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +10,7 @@ public class PageManager {
     private WebDriver driver;
     private BaseClass baseclass;
     private LoginPage loginPage;
-    private HomePage homePage;
+    private HyperLinkPage hyperLinkPage;
     private SearchPage searchPage;
 
     public PageManager(WebDriver driver) {
@@ -25,8 +25,8 @@ public class PageManager {
         return (loginPage == null) ? loginPage = new LoginPage(driver) : loginPage;
     }
 
-    public HomePage getHomePage() {
-        return (homePage == null) ? homePage = new HomePage(driver) : homePage;
+    public HyperLinkPage getHomePage() {
+        return (hyperLinkPage == null) ? hyperLinkPage = new HyperLinkPage(driver) : hyperLinkPage;
     }
     public SearchPage getSearchPage() {
         return (searchPage == null) ? searchPage = new SearchPage(driver) : searchPage;
