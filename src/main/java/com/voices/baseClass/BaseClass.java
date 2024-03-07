@@ -586,4 +586,18 @@ public class BaseClass {
                 .executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
+    public static boolean isElementPresent(WebDriver driver, WebElement element){
+        boolean status = false;
+        try{
+            element.isDisplayed();
+            System.out.println("Element Present");
+            status = true;
+        }catch (Exception e){
+            System.out.println("Element Not Present");
+            status = false;
+        }
+        return status;
+
+    }
+
 }

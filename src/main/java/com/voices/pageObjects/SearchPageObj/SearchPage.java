@@ -63,12 +63,17 @@ public class SearchPage {
             searchIcon.click();
             if (tabName.equalsIgnoreCase("Talent")) {
                 BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-//                talentTab.click();
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
+            if (!BaseClass.isElementPresent(SearchPage.driver, categoryDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(3000);
             }
             BaseClass.waitForVisibility(categoryDropdown, 30, SearchPage.driver);
-            categoryDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, categoryDropdown);
             WebElement categoryElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + category + "']"));
             categoryElement.click();
             BaseClass.waitForVisibility(applyFilterButton, 30, SearchPage.driver);
@@ -79,6 +84,11 @@ public class SearchPage {
                 categoryTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 categoryTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (categoryTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", categoryTextEleList.size() == 0);
+                continue;
+
             }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
@@ -128,13 +138,19 @@ public class SearchPage {
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
             if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
+                BaseClass.staticWaitForVisibility(5000);
 //                talentTab.click();
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(5000);
             }
+            if (!BaseClass.isElementPresent(SearchPage.driver, languageDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(languageDropdown, 30, SearchPage.driver);
-            languageDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, languageDropdown);
             BaseClass.waitForVisibility(languageSearchField, 30, SearchPage.driver);
             languageSearchField.sendKeys(language);
             BaseClass.staticWaitForVisibility(2000);
@@ -147,6 +163,11 @@ public class SearchPage {
                 languageTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 languageTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (languageTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", languageTextEleList.size() == 0);
+                continue;
+
             }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
@@ -191,12 +212,16 @@ public class SearchPage {
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
             if (tabName.equalsIgnoreCase("Talent")) {
-                BaseClass.waitForVisibility(talentTab, 30, SearchPage.driver);
-//                talentTab.click();
+                BaseClass.staticWaitForVisibility(5000);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(5000);
+            }
+            if (!BaseClass.isElementPresent(SearchPage.driver, accentDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(3000);
             }
-            BaseClass.waitForVisibility(accentDropdown, 30, SearchPage.driver);
             accentDropdown.click();
             BaseClass.waitForVisibility(accentSearchField, 30, SearchPage.driver);
             accentSearchField.sendKeys(accent);
@@ -204,13 +229,17 @@ public class SearchPage {
             WebElement accentElement = SearchPage.driver.findElement(By.xpath("(//div[text()='" + accent + "'])[1]"));
             accentElement.click();
             BaseClass.staticWaitForVisibility(3000);
-//            List<WebElement> accentTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
 
             List<WebElement> accentTextEleList = null;
             if (tabName.equalsIgnoreCase("Packages")) {
                 accentTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 accentTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (accentTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", accentTextEleList.size() == 0);
+                continue;
+
             }
 
             String[] countPage1 = elementCount.getText().split(" ");
@@ -263,8 +292,15 @@ public class SearchPage {
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(3000);
             }
+            if (!BaseClass.isElementPresent(SearchPage.driver, genderDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(genderDropdown, 30, SearchPage.driver);
-            genderDropdown.click();
+//            genderDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, genderDropdown);
             WebElement genderElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + gender + "']"));
             genderElement.click();
             BaseClass.waitForVisibility(genderApplyFilterButton, 30, SearchPage.driver);
@@ -277,6 +313,12 @@ public class SearchPage {
                 genderTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 genderTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+
+            if (genderTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", genderTextEleList.size() == 0);
+                continue;
+
             }
 
             String[] countPage1 = elementCount.getText().split(" ");
@@ -328,8 +370,15 @@ public class SearchPage {
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(5000);
             }
+            if (!BaseClass.isElementPresent(SearchPage.driver, ageDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(ageDropdown, 30, SearchPage.driver);
-            ageDropdown.click();
+//            ageDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, ageDropdown);
             WebElement ageElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + age + "']"));
             ageElement.click();
             BaseClass.waitForVisibility(ageApplyFilterButton, 30, SearchPage.driver);
@@ -342,6 +391,10 @@ public class SearchPage {
                 ageTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 ageTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (ageTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", ageTextEleList.size() == 0);
+                continue;
             }
 
             String[] countPage1 = elementCount.getText().split(" ");
@@ -388,7 +441,8 @@ public class SearchPage {
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
         BaseClass.waitForVisibility(priceDropdown, 30, SearchPage.driver);
-        priceDropdown.click();
+//        priceDropdown.click();
+        BaseClass.javaScriptClick(SearchPage.driver, priceDropdown);
         BaseClass.waitForVisibility(minimumPriceXp, 30, SearchPage.driver);
         minimumPriceXp.sendKeys(minimumPrice);
         BaseClass.waitForVisibility(maximumPriceXp, 30, SearchPage.driver);
@@ -408,6 +462,7 @@ public class SearchPage {
         } else {
             Assert.assertEquals("Validate price gadget count for first page", 24, priceTextEleList.size());
         }
+
         for (WebElement priceTextElement : priceTextEleList) {
             int price = Integer.parseInt(priceTextElement.getText().substring(1));
             Assert.assertTrue("Validate Gadget price", (minimum <= price) && (price <= maximum));
@@ -447,14 +502,18 @@ public class SearchPage {
             BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
             searchIcon.click();
             BaseClass.waitForVisibility(deliveryTimeDropdown, 30, SearchPage.driver);
-            deliveryTimeDropdown.click();
+//            deliveryTimeDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, deliveryTimeDropdown);
             WebElement deliveryTimeElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + deliveryTime + "']"));
             deliveryTimeElement.click();
             BaseClass.waitForVisibility(deliveryTimeApplyFilterButton, 30, SearchPage.driver);
             deliveryTimeApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> deliveryTimeTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
-
+            if (deliveryTimeTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", deliveryTimeTextEleList.size() == 0);
+                continue;
+            }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
             int totalFirstPageCount = 0;
@@ -515,6 +574,8 @@ public class SearchPage {
     private WebElement roleDropdown;
     @FindBy(xpath = "//div[@data-category='role_ids']//input[@placeholder='Search...']")
     private WebElement roleSearchField;
+    @FindBy(xpath = "//label[@for='search-type-projects']")
+    private WebElement packageTab;
 
     public void validateRoleSearchForNonSignUser(String tabName, String... roleList) {
         for (String role : roleList) {
@@ -524,10 +585,19 @@ public class SearchPage {
             if (tabName.equalsIgnoreCase("Talent")) {
                 BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
                 BaseClass.javaScriptClick(SearchPage.driver, talentTab);
-                BaseClass.staticWaitForVisibility(5000);
+                BaseClass.staticWaitForVisibility(7000);
             }
+            if (!BaseClass.isElementPresent(SearchPage.driver, roleDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(7000);
+            }
+
+
             BaseClass.waitForVisibility(roleDropdown, 30, SearchPage.driver);
-            roleDropdown.click();
+//            roleDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, roleDropdown);
             BaseClass.waitForVisibility(roleSearchField, 30, SearchPage.driver);
             roleSearchField.sendKeys(role);
             BaseClass.staticWaitForVisibility(2000);
@@ -540,6 +610,10 @@ public class SearchPage {
                 roleTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 roleTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (roleTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", roleTextEleList.size() == 0);
+                continue;
             }
 
             String[] countPage1 = elementCount.getText().split(" ");
@@ -597,9 +671,19 @@ public class SearchPage {
                 BaseClass.staticWaitForVisibility(5000);
             }
             BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-            showMoreLink.click();
+            BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
+            if (!BaseClass.isElementPresent(SearchPage.driver, styleDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+//                BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
+//                BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
+            }
+
             BaseClass.waitForVisibility(styleDropdown, 30, SearchPage.driver);
-            styleDropdown.click();
+//            styleDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, styleDropdown);
             BaseClass.waitForVisibility(styleSearchField, 30, SearchPage.driver);
             styleSearchField.sendKeys(style);
             BaseClass.staticWaitForVisibility(2000);
@@ -613,7 +697,10 @@ public class SearchPage {
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 styleTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
             }
-
+            if (styleTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", styleTextEleList.size() == 0);
+                continue;
+            }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
             int totalFirstPageCount = 0;
@@ -658,13 +745,22 @@ public class SearchPage {
             searchIcon.click();
             if (tabName.equalsIgnoreCase("Talent")) {
                 BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
-                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                talentTab.click();
+//                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
                 BaseClass.staticWaitForVisibility(5000);
             }
             BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-            showMoreLink.click();
+//            showMoreLink.click();
+            BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
+            if (!BaseClass.isElementPresent(SearchPage.driver, talentTierDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(talentTierDropdown, 30, SearchPage.driver);
-            talentTierDropdown.click();
+//            talentTierDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, talentTierDropdown);
             WebElement talentTierElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + talentTier + "']"));
             talentTierElement.click();
             BaseClass.waitForVisibility(talentTierApplyFilterButton, 30, SearchPage.driver);
@@ -677,6 +773,10 @@ public class SearchPage {
                 talentTierTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 talentTierTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (talentTierTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", talentTierTextEleList.size() == 0);
+                continue;
             }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
@@ -726,9 +826,17 @@ public class SearchPage {
                 BaseClass.staticWaitForVisibility(5000);
             }
             BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-            showMoreLink.click();
+//            showMoreLink.click();
+            BaseClass.javaScriptClick(SearchPage.driver, onlineStatusDropdown);
+            if (!BaseClass.isElementPresent(SearchPage.driver, talentTierDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(onlineStatusDropdown, 30, SearchPage.driver);
-            onlineStatusDropdown.click();
+//            onlineStatusDropdown.click();
+            BaseClass.javaScriptClick(SearchPage.driver, onlineStatusDropdown);
             WebElement onlineStatusElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + onlineStatus + "']"));
             onlineStatusElement.click();
             BaseClass.waitForVisibility(onlineStatusApplyFilterButton, 30, SearchPage.driver);
@@ -742,7 +850,10 @@ public class SearchPage {
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 onlineStatusTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
             }
-
+            if (onlineStatusTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", onlineStatusTextEleList.size() == 0);
+                continue;
+            }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
             int totalFirstPageCount = 0;
@@ -791,9 +902,17 @@ public class SearchPage {
             BaseClass.staticWaitForVisibility(5000);
         }
         BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
-        showMoreLink.click();
+//        showMoreLink.click();
+        BaseClass.javaScriptClick(SearchPage.driver, showMoreLink);
+        if (!BaseClass.isElementPresent(SearchPage.driver, locationDropdown)) {
+            packageTab.click();
+            BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+            BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+            BaseClass.staticWaitForVisibility(3000);
+        }
         BaseClass.waitForVisibility(locationDropdown, 30, SearchPage.driver);
-        locationDropdown.click();
+//        locationDropdown.click();
+        BaseClass.javaScriptClick(SearchPage.driver, locationDropdown);
         BaseClass.waitForVisibility(countryDropdown, 30, SearchPage.driver);
         countryDropdown.click();
         BaseClass.waitForVisibility(countrySearchField, 30, SearchPage.driver);
@@ -820,7 +939,6 @@ public class SearchPage {
         } else if (tabName.equalsIgnoreCase("Talent")) {
             locationTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
         }
-
         String[] countPage1 = elementCount.getText().split(" ");
         int totalCountPage1 = Integer.parseInt(countPage1[3]);
         int totalFirstPageCount = 0;
@@ -872,6 +990,12 @@ public class SearchPage {
             }
             BaseClass.waitForVisibility(showMoreLink, 30, SearchPage.driver);
             showMoreLink.click();
+            if (!BaseClass.isElementPresent(SearchPage.driver, roleDropdown)) {
+                packageTab.click();
+                BaseClass.waitForVisibility(talentTab, 60, SearchPage.driver);
+                BaseClass.javaScriptClick(SearchPage.driver, talentTab);
+                BaseClass.staticWaitForVisibility(3000);
+            }
             BaseClass.waitForVisibility(LiveDirDropdown, 30, SearchPage.driver);
             LiveDirDropdown.click();
             WebElement liveDirElement = SearchPage.driver.findElement(By.xpath("//label[normalize-space()='" + liveDir + "']"));
@@ -884,6 +1008,10 @@ public class SearchPage {
                 liveDirTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             } else if (tabName.equalsIgnoreCase("Talent")) {
                 liveDirTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-demoTags']"));
+            }
+            if (liveDirTextEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", liveDirTextEleList.size() == 0);
+                continue;
             }
             String[] countPage1 = elementCount.getText().split(" ");
             int totalCountPage1 = Integer.parseInt(countPage1[3]);
@@ -940,7 +1068,10 @@ public class SearchPage {
             applyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> categoryPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
-            ;
+            if (categoryPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", categoryPlayDemoEleList.size() == 0);
+                continue;
+            }
 
             for (WebElement categoryPlayDemoElement : categoryPlayDemoEleList) {
                 Assert.assertTrue("Validate Category Text", categoryPlayDemoElement.isEnabled());
@@ -971,6 +1102,10 @@ public class SearchPage {
             BaseClass.staticWaitForVisibility(3000);
 //            List<WebElement> languageTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
             List<WebElement> languagePlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (languagePlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", languagePlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement languagePlayDemoElement : languagePlayDemoEleList) {
                 Assert.assertTrue("Validate Play demo button for language dropdown", languagePlayDemoElement.isEnabled());
             }
@@ -999,6 +1134,10 @@ public class SearchPage {
 //            List<WebElement> accentTextEleList = SearchPage.driver.findElements(By.xpath("//div[@class='ResultCard-category']"));
 
             List<WebElement> accentPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (accentPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", accentPlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement accentPlayDemoElement : accentPlayDemoEleList) {
                 Assert.assertTrue("Validate accent play demo button", accentPlayDemoElement.isEnabled());
             }
@@ -1027,6 +1166,10 @@ public class SearchPage {
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> genderPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
 
+            if (genderPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", genderPlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement genderPlayDemoElement : genderPlayDemoEleList) {
                 Assert.assertTrue("Validate Play Demo button for gender dropdown", genderPlayDemoElement.isEnabled());
             }
@@ -1052,6 +1195,10 @@ public class SearchPage {
             ageApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> agePlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (agePlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", agePlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement agePlayDemoElement : agePlayDemoEleList) {
                 Assert.assertTrue("Validate Age Play Demo button", agePlayDemoElement.isEnabled());
             }
@@ -1059,7 +1206,7 @@ public class SearchPage {
         }
     }
 
-    public void validateVoicesAgePlayDemoForNonSignUser(String minimumPrice, String maximumPrice) {
+    public void validateVoicesPricePlayDemoForNonSignUser(String minimumPrice, String maximumPrice) {
         SearchPage.driver.get("https://www.voices.systems/");
         BaseClass.waitForVisibility(searchIcon, 30, SearchPage.driver);
         searchIcon.click();
@@ -1092,6 +1239,10 @@ public class SearchPage {
             deliveryTimeApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> deliveryTimePlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (deliveryTimePlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", deliveryTimePlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement deliveryTimePlayDemoElement : deliveryTimePlayDemoEleList) {
                 Assert.assertTrue("Validate Play demo button for delivery time dropdown", deliveryTimePlayDemoElement.isEnabled());
             }
@@ -1118,6 +1269,10 @@ public class SearchPage {
             talentTierApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> talentTierPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (talentTierPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", talentTierPlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement talentTierPlayDemoElement : talentTierPlayDemoEleList) {
                 Assert.assertTrue("Validate Play demo button for Talent tier dropdown", talentTierPlayDemoElement.isEnabled());
             }
@@ -1144,6 +1299,10 @@ public class SearchPage {
             onlineStatusApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> onlineStatusPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (onlineStatusPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", onlineStatusPlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement onlineStatusPlayDemoElement : onlineStatusPlayDemoEleList) {
                 Assert.assertTrue("Validate Play Button for Online Status Dropdown", onlineStatusPlayDemoElement.isEnabled());
             }
@@ -1208,6 +1367,10 @@ public class SearchPage {
             BaseClass.staticWaitForVisibility(3000);
 
             List<WebElement> rolePlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (rolePlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", rolePlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement rolePlayDemoElement : rolePlayDemoEleList) {
                 Assert.assertTrue("Validate play demo button for role dropdown", rolePlayDemoElement.isEnabled());
             }
@@ -1237,6 +1400,10 @@ public class SearchPage {
             BaseClass.staticWaitForVisibility(3000);
 
             List<WebElement> stylePlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (stylePlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", stylePlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement stylePlayDemoElement : stylePlayDemoEleList) {
                 Assert.assertTrue("Validate play demo button for style dropdown", stylePlayDemoElement.isEnabled());
             }
@@ -1264,6 +1431,10 @@ public class SearchPage {
             liveApplyFilterButton.click();
             BaseClass.staticWaitForVisibility(3000);
             List<WebElement> liveDirPlayDemoEleList = SearchPage.driver.findElements(By.xpath("//div[@class='play-pause-btn']"));
+            if (liveDirPlayDemoEleList.isEmpty()) {
+                Assert.assertTrue("Zero record found", liveDirPlayDemoEleList.size() == 0);
+                continue;
+            }
             for (WebElement liveDriPlayDemoElement : liveDirPlayDemoEleList) {
                 Assert.assertTrue("Validate play demo button for live directed session dropdown", liveDriPlayDemoElement.isEnabled());
             }

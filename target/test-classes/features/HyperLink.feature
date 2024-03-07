@@ -1,10 +1,9 @@
-
+@HyperLink
 Feature: HyperLink Validation
 
   Background: Open Main URL
     Given User Open Home Page
 
-  @HyperLink
   Scenario: Validate All Hyperlink On Main Navigation Panel For Non SignIn User
     And User click on How it works link and validate url
     And User click on log in link and validate url
@@ -26,15 +25,13 @@ Feature: HyperLink Validation
     And User validate all social media links under footer for Non Sign user
     And User validate all footer links under footer for Non Sign user
 
-  @HyperLink
   Scenario: Validate All HyerLink On Main Navigation Panel For Client SingIn User
     And User login with client credentials
-#    And User Click on post job and Validate url open successfully
-#    And User Click on jobs and Validate all hyperlinks
-#    And User Click on Messages and Notifications hyperlinks
-#    And User Click on user icon and Validate all hyperlinks
+    And User Click on post job and Validate url open successfully
+    And User Click on jobs and Validate all hyperlinks
+    And User Click on Messages and Notifications hyperlinks
+    And User Click on user icon and Validate all hyperlinks
 
-  @HyperLink
   Scenario: Validate All Hyperlink On Sub Navigation Panel For Client SignIn User
     And User login with client credentials
     Then Validate all sub module hyperlink
