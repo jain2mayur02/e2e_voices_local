@@ -130,6 +130,7 @@ public class HyperLinkPageSteps {
 
     @And("User login with Talent Guest credentials")
     public void user_login_with_Talent_Guest_credentials() {
+        hyperLinkPage.clickOnHowItWorkAndValidateUrl();
         hyperLinkPage.userLogin(ReaderManager.getInstance().getConfigReader().getTalentGuestUserName(), ReaderManager.getInstance().getConfigReader().getTalentGuestPassword(), "TalentLoginUrl");
     }
 

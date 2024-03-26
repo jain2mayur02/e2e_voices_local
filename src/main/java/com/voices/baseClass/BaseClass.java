@@ -95,6 +95,7 @@ public class BaseClass {
     public static void selectDropDownByVisibleText(WebDriver driverClass, WebElement dropDownElement, String dropDownTxt) {
         Select dropDownObj = new Select(dropDownElement);
         dropDownObj.selectByVisibleText(dropDownTxt);
+        BaseClass.staticWaitForVisibility(2000);
 
     }
 
@@ -308,7 +309,7 @@ public class BaseClass {
         return columnData;
     }
 
-    public static java.util.List getColumnDataInList(WebDriver driverClass, String xpath) {
+    public static List<String> getColumnDataInList(WebDriver driverClass, String xpath) {
         java.util.List<String> columnData = new ArrayList<String>();
         java.util.List<WebElement> columnDataWebElement = driverClass.findElements(By.xpath(xpath));
         for (WebElement element : columnDataWebElement) {
@@ -316,6 +317,23 @@ public class BaseClass {
         }
         return columnData;
     }
+
+    public static List<Double> convertStringToDoubleList(List<String> inputList) {
+        List<Double> outputList = new ArrayList<Double>();
+        for (String input : inputList) {
+            outputList.add(Double.parseDouble(input));
+        }
+        return outputList;
+    }
+    public static List<String> removeAnyWord(List<String> inputList, String word) {
+        List<String> outputList = new ArrayList<String>();
+        for (String input : inputList) {
+            outputList.add(input.replace(word, "").trim());
+        }
+        return outputList;
+    }
+
+
 
 
     public static Set<String> getDataFromRentRollImportExcelByTenantNameInSet(String excelFile, String sheetName, String tenantName, int tenantCol, int colNo, int startRowNo) throws IOException {
@@ -586,18 +604,40 @@ public class BaseClass {
                 .executeScript("window.scrollTo(0, document.body.scrollHeight)");
     }
 
-    public static boolean isElementPresent(WebDriver driver, WebElement element){
+    public static boolean isElementPresent(WebDriver driver, WebElement element) {
         boolean status = false;
-        try{
+        try {
             element.isDisplayed();
-            System.out.println("Element Present");
             status = true;
-        }catch (Exception e){
-            System.out.println("Element Not Present");
+        } catch (Exception e) {
             status = false;
         }
         return status;
 
+    }
+
+    public static void scrollToElement(WebDriver driver, WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView();", element);
+        BaseClass.staticWaitForVisibility(2000);
+    }
+
+    public static boolean isSortedAscending(List<Double> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) > list.get(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isSortedDescending(List<Double> list) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            if (list.get(i) < list.get(i + 1)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }
